@@ -1,0 +1,8 @@
+parser\controller\FixParserController.class
+parser\fix\FixMsgCategory.class
+parser\model\FixVersionOption.class
+parser\Application.class
+parser\fix\FixField.class
+parser\model\FixMessageFormData.class
+parser\fix\FixMsgCategory$Category.class
+parser\fix\FixMap.class
