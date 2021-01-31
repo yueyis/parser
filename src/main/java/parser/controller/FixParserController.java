@@ -97,17 +97,15 @@ public class FixParserController {
 
         String[] msgs = repQ.split("\n");
 
-        for (int i = 0; i < msgs.length; i++) {
+        for (String s : msgs) {
 
-            List<FixField> FldList = new ArrayList<FixField>();
-            String msg = msgs[i];
+            List<FixField> fixFieldList = new ArrayList<FixField>();
 
-            String[] flds = msg.split("\\|");
-            for (int j = 0; j < flds.length; j++) {
+            String[] flds = s.split("\\|");
+            for (String field : flds) {
                 FixField fld = null;
 
-                String kvPair = flds[j];
-                String[] kv = kvPair.split("=");
+                String[] kv = field.split("=");
                 String k, v;
 
                 k = kv[0].trim();
@@ -123,10 +121,10 @@ public class FixParserController {
 
                 fld = FixMap.getFieldDetail(k, this.fixMap);
                 fld.setValue(v);
-                FldList.add(fld);
+                fixFieldList.add(fld);
             }
-            if (FldList.size() > 3) {
-                this.fixParseResList.add(FldList);
+            if (fixFieldList.size() > 3) {
+                this.fixParseResList.add(fixFieldList);
 
             }
         }
