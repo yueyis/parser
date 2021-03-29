@@ -33,13 +33,11 @@ public class FixParserController {
     private static List<FixVersionOption> fixOptionList;
 
     static {
-
         fixOptionList = new ArrayList<FixVersionOption>();
         fixOptionList.add(new FixVersionOption("FIX42", "FIX 4.2"));
         fixOptionList.add(new FixVersionOption("FIX43", "FIX 4.3"));
         fixOptionList.add(new FixVersionOption("FIX44", "FIX 4.4"));
         fixOptionList.add(new FixVersionOption("FIX50", "FIX 5.0"));
-
     }
 
 

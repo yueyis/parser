@@ -5,9 +5,8 @@ package parser.fix;
  */
 public class FixMsgCategory {
 
-    enum Category 
-    { 
-        header, body, trailer; 
-    } 
-	
+    enum Category {
+        header, body, trailer;
+    }
+
 }
