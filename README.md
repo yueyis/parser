@@ -1,7 +1,7 @@
 ## Table of contents
 * [General info](#general-info)
 * [Technologies](#technologies)
-* [Docker Support](#setup)
+* [Build & Deploy](#build--deploy)
 
 ## General info
 This project is simple Lorem ipsum dolor generator.
