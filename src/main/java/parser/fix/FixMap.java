@@ -1,13 +1,14 @@
 package parser.fix;
 
-import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.HashMap;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
+import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.text.WordUtils;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -59,13 +60,12 @@ public class FixMap {
 
 
     public void buildMapping() {
-
-        File xmlFile = new File(this.filePath);
+        InputStream is = getClass().getClassLoader().getResourceAsStream(FilenameUtils.getName(this.filePath));
         DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder dBuilder;
         try {
             dBuilder = dbFactory.newDocumentBuilder();
-            Document doc = dBuilder.parse(xmlFile);
+            Document doc = dBuilder.parse(is);
             doc.getDocumentElement().normalize();
 
             Node rootNode = doc.getElementsByTagName("fields").item(0);

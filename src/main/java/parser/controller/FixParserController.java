@@ -130,7 +130,7 @@ public class FixParserController {
 
     @GetMapping("/fixparser")
     public String get(@RequestParam(required = false) String q, Model model) {
-        fixParseResList = new ArrayList<List<FixField>>();
+        fixParseResList = new ArrayList<>();
         if (q == null) {
             text = "";
         } else {
@@ -151,7 +151,7 @@ public class FixParserController {
     @PostMapping("/fixparser")
     public String post(HttpServletResponse response, Model model, @Valid @ModelAttribute("formdata") FixMessageFormData formData) throws IOException {
 
-        fixParseResList = new ArrayList<List<FixField>>();
+        fixParseResList = new ArrayList<>();
 
         String q = formData.getText();
         String version = formData.getFixdialect();
