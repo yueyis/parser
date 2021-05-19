@@ -2,7 +2,11 @@ package parser.fix;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -80,7 +84,16 @@ public class FixMap {
         } catch (SAXException | ParserConfigurationException | IOException e1) {
             e1.printStackTrace();
         }
+    }
 
+    public List<String> stringToList(String csv) {
+        String[] elements = csv.split(",");
+        List<String> list = Arrays.asList(elements);
+        List<String> trimFilterList = list.stream()
+                .map(String::trim)
+                .filter(s -> s.length() > 0)
+                .collect(Collectors.toList());
+        return trimFilterList;
     }
 
 
@@ -89,10 +102,20 @@ public class FixMap {
         FixField field = new FixField();
         if (node.getNodeType() == Node.ELEMENT_NODE) {
             Element element = (Element) node;
-            String t = element.getAttribute("number");
-            String n = element.getAttribute("name");
-            field.setTag(t);
-            field.setName(n);
+            String tagNumber = element.getAttribute("number");
+            String tagName = element.getAttribute("name");
+            String label = "";
+            if (element.hasAttribute("label")) {
+                label = element.getAttribute("label");
+            }
+            field.setTag(tagNumber);
+            field.setName(tagName);
+            List<String> tagLabelList = stringToList(label);
+            if(tagLabelList.isEmpty()) {
+                tagLabelList.add("Standard");
+            }
+
+            field.setLabeList(tagLabelList);
 
             if (node.hasChildNodes()) {
                 NodeList subNodeList = element.getChildNodes();
@@ -108,7 +131,7 @@ public class FixMap {
                 }
             }
 
-            this.fieldMap.put(t, field);
+            this.fieldMap.put(tagNumber, field);
         }
     }
 

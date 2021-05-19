@@ -164,7 +164,6 @@ public class FixParserController {
         model.addAttribute("fixParseResList", getFixParseResList());
         model.addAttribute("FixOptionList", fixOptionList);
 
-
         return "fixparser";
 
     }

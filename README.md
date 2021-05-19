@@ -27,5 +27,5 @@ java -jar target/parser-1.0.jar
 We can also add additional layer to run the Spring Boot application in Docker.
 ```
 docker build -t yueyis/parser .
-docker run -d -p 8088:8088 yueyis/parser
+docker run --name parser-app -d -p 8088:8088 yueyis/parser
 ```

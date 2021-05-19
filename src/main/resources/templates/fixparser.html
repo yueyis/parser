@@ -12,7 +12,6 @@
 
     <link href="/css/main.css" rel="stylesheet">
     <script src="/js/toggle-example.js"></script>
-
 </head>
 
 <body>
@@ -73,6 +72,7 @@
             <table class="table table-hover msgDetail">
                 <tr>
                     <th>Tag</th>
+                    <th>Labels</th>
                     <th>Field</th>
                     <th>Value</th>
                     <th>Description</th>
@@ -80,6 +80,11 @@
                 <tr th:each="field :${fixParseRes}"
                     th:class="(${#strings.equals(field.getMsgCategory(),'header')} ? 'fixMessageHeader' : (${#strings.equals(field.getMsgCategory(),'trailer')} ? 'fixMessageTrailer' : ''))">
                     <td th:text="${field.getTag()}"></td>
+                    <td>
+                        <span th:each="label: ${field.getLabeList()}"
+                              th:text="${label}"
+                              th:class="(${#strings.equals(label,'Standard')} ? 'badge badge-primary' : 'badge badge-dark')">${label}</span>
+                    </td>
                     <td th:text="${field.getName()} == '' ? 'Custom Tag' : ${field.getName()} "
                         th:style="${field.getName()} == '' ? 'color:red' : ''"></td>
                     <td th:text="${field.getValue()}"></td>
